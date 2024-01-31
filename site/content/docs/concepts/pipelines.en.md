@@ -6,6 +6,9 @@ In this section, we'll talk about using Copilot to set up a CodePipeline that au
     AWS CodePipeline is not supported for services with Windows as the OS Family.
     CodePipeline uses Linux-based AWS CodeBuild for the 'build' stage, so for now, Copilot pipelines cannot build Windows containers.
 
+!!! Attention
+    The pipeline may reach a [Docker's pull rate limit](https://docs.docker.com/docker-hub/download-rate-limit/). In that case, you can login to a Docker hub account to double that limit. See https://github.com/aws/copilot-cli/issues/1869#issuecomment-765643674
+
 ## Why?
 
 We won't get too philosophical about releasing software, but what's the point of having a release pipeline? With `copilot deploy` you can deploy your service directly from your computer to Amazon ECS on AWS Fargate, so why add a middleman? That's a great question. For some apps, manually using `deploy` is enough, but as your release process gets more complicated (as you add more environments or add automated testing, for example) you want to offload the boring work of repeatedly orchestrating that process to a service. With two services, each having two environments (test and production, say), running integration tests after you deploy to your test environment becomes surprisingly cumbersome to do by hand.
